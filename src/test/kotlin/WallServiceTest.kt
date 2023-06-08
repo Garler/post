@@ -14,27 +14,27 @@ class WallServiceTest {
 
     @Test
     fun add_id1() {
-        val result = WallService.add(Post(1, 1, "text 1"))
+        val result = WallService.add(Post(1, 1, 1, date = 1))
             assertEquals(1, result.id)
         }
 
     @Test
     fun add_id5() {
-        val result = WallService.add(Post(5, 1, "text 1"))
+        val result = WallService.add(Post(5, 1, 1, date = 1))
         assertEquals(1, result.id)
     }
 
     @Test
     fun update_true() {
-        WallService.add(Post(1, 1, "text 1"))
-        val result = WallService.update(Post(1, 1, "text 1"))
+        WallService.add(Post(1, 1, 1, date = 1))
+        val result = WallService.update(Post(1, 1,1, date = 1))
         assertEquals(true, result)
     }
 
     @Test
     fun update_false() {
-        WallService.add(Post(1, 1, "text 1"))
-        val result = WallService.update(Post(10, 1, "text 1"))
+        WallService.add(Post(1, 1, 1, date = 1))
+        val result = WallService.update(Post(10, 1, 1, date = 1))
         assertEquals(false, result)
     }
 }
