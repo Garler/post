@@ -9,7 +9,7 @@ fun main() {
     println(WallService.createComment(1, Comment()))
     println(WallService.createComment(5, Comment()))
 }
-
+class PostNotFoundException(message: String) : RuntimeException(message)
 data class Post(
         val id: Int,
         val ownerId: Int,
@@ -216,8 +216,6 @@ object WallService {
         posts += post.copy(id = ++lastId, likes = post.likes.copy())
         return posts.last()
     }
-
-    class PostNotFoundException(message: String) : RuntimeException(message)
 
     fun update(newPost: Post): Boolean {
         for ((index, post) in posts.withIndex()) {

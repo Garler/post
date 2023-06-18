@@ -4,6 +4,7 @@ import org.junit.Assert.*
 import org.junit.Before
 import ru.netology.Comment
 import ru.netology.Post
+import ru.netology.PostNotFoundException
 import ru.netology.WallService
 
 class WallServiceTest {
@@ -46,7 +47,7 @@ class WallServiceTest {
         assertEquals(1, result.id)
     }
 
-    @Test(expected = WallService.PostNotFoundException::class)
+    @Test(expected = PostNotFoundException::class)
     fun shouldThrow() {
         WallService.add(Post(1, 1, 1, date = 1))
         WallService.createComment(5, Comment())
