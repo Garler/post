@@ -2,6 +2,7 @@ import org.junit.Test
 
 import org.junit.Assert.*
 import org.junit.Before
+import ru.netology.Comment
 import ru.netology.Post
 import ru.netology.WallService
 
@@ -15,8 +16,8 @@ class WallServiceTest {
     @Test
     fun add_id1() {
         val result = WallService.add(Post(1, 1, 1, date = 1))
-            assertEquals(1, result.id)
-        }
+        assertEquals(1, result.id)
+    }
 
     @Test
     fun add_id5() {
@@ -27,7 +28,7 @@ class WallServiceTest {
     @Test
     fun update_true() {
         WallService.add(Post(1, 1, 1, date = 1))
-        val result = WallService.update(Post(1, 1,1, date = 1))
+        val result = WallService.update(Post(1, 1, 1, date = 1))
         assertEquals(true, result)
     }
 
@@ -36,5 +37,18 @@ class WallServiceTest {
         WallService.add(Post(1, 1, 1, date = 1))
         val result = WallService.update(Post(10, 1, 1, date = 1))
         assertEquals(false, result)
+    }
+
+    @Test
+    fun createComment_addTrue() {
+        WallService.add(Post(1, 1, 1, date = 1))
+        val result = WallService.createComment(1, Comment())
+        assertEquals(1, result.id)
+    }
+
+    @Test(expected = WallService.PostNotFoundException::class)
+    fun shouldThrow() {
+        WallService.add(Post(1, 1, 1, date = 1))
+        WallService.createComment(5, Comment())
     }
 }
