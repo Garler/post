@@ -9,6 +9,7 @@ fun main() {
     println(WallService.createComment(1, Comment()))
     println(WallService.createComment(5, Comment()))
 }
+
 class PostNotFoundException(message: String) : RuntimeException(message)
 data class Post(
         val id: Int,
@@ -199,13 +200,14 @@ data class Comment(
         val text: String = "text",
         val donut: Donut = Donut(),
         val replyToUser: Int? = null,
-        val replyToComment: Int? = null
-//    val attachments: Array<Attachment> = arrayOf(
-//        PhotoAttachment(Photo()),
-//        VideoAttachment(Video()),
-//        AudioAttachment(Audio()),
-//        DocAttachment(Doc()),
-//        GraffitiAttachment(Graffiti())
+        val replyToComment: Int? = null,
+        val attachments: Array<Attachment> = arrayOf(
+                PhotoAttachment(Photo()),
+                VideoAttachment(Video()),
+                AudioAttachment(Audio()),
+                DocAttachment(Doc()),
+                GraffitiAttachment(Graffiti())
+        )
 )
 
 object WallService {
